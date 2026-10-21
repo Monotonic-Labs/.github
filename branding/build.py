@@ -40,27 +40,33 @@ def stops() -> str:
 
 
 def logo(prefix: str) -> str:
-    """The full 512x512 logo tile. `prefix` keeps gradient ids unique when embedded."""
+    """The full 512x512 logo tile: gradient lettering with a soft glow on near-black.
+
+    `prefix` keeps gradient and filter ids unique when embedded.
+    """
     x0, y0, x1, y1 = GLYPH_BOX
     k = GLYPH_SIZE / max(x1 - x0, y1 - y0)
     cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    line = (f'fill="none" stroke="#ffffff" stroke-width="{STROKE}" '
+    paint = f"url(#{prefix}Ink)"
+    line = (f'fill="none" stroke="{paint}" stroke-width="{STROKE}" '
             'stroke-linecap="round" stroke-linejoin="round"')
+    glyph = f"""\
+      <path d="M104 372V220L170 306L236 220V372" {line}/>
+      <path d="M276 160H380M328 160V312" {line}/>
+      <circle cx="440" cy="100" r="{STROKE / 2}" fill="{paint}"/>
+"""
     return f"""\
   <defs>
-    <linearGradient id="{prefix}Bg" x1="0" y1="1" x2="1" y2="0">{stops()}</linearGradient>
-    <radialGradient id="{prefix}Glow" cx="0.25" cy="0.15" r="0.8">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="{prefix}Ink" gradientUnits="userSpaceOnUse" x1="{x0}" y1="{y1}" x2="{x1}" y2="{y0}">{stops()}</linearGradient>
+    <filter id="{prefix}Glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
   </defs>
-  <rect width="512" height="512" fill="url(#{prefix}Bg)"/>
-  <rect width="512" height="512" fill="url(#{prefix}Glow)"/>
+  <rect width="512" height="512" fill="#0b0b10"/>
   <g transform="translate(256 256) scale({k:.4f}) translate({-cx} {-cy})">
-    <path d="M104 372V220L170 306L236 220V372" {line}/>
-    <path d="M276 160H380M328 160V312" {line}/>
-    <circle cx="440" cy="100" r="{STROKE / 2}" fill="#ffffff"/>
-  </g>
+    <g filter="url(#{prefix}Glow)" opacity="0.55">
+{glyph}    </g>
+{glyph}  </g>
 """
 
 
