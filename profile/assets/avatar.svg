@@ -1,19 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
   <defs>
     <linearGradient id="logoInk" gradientUnits="userSpaceOnUse" x1="77.0" y1="399.0" x2="467.0" y2="73.0"><stop offset="0.0" stop-color="#FF9500"/><stop offset="0.35" stop-color="#FF2D55"/><stop offset="0.68" stop-color="#AF52DE"/><stop offset="1.0" stop-color="#0A84FF"/></linearGradient>
-    <filter id="logoGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="18"/>
-    </filter>
   </defs>
   <rect width="512" height="512" fill="#0b0b10"/>
-  <g transform="translate(256 256) scale(0.8462) translate(-272.0 -236.0)">
-    <g filter="url(#logoGlow)" opacity="0.55">
-      <path d="M104 372V220L170 306L236 220V372" fill="none" stroke="url(#logoInk)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M276 160H380M328 160V312" fill="none" stroke="url(#logoInk)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="440" cy="100" r="27.0" fill="url(#logoInk)"/>
-    </g>
-      <path d="M104 372V220L170 306L236 220V372" fill="none" stroke="url(#logoInk)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M276 160H380M328 160V312" fill="none" stroke="url(#logoInk)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="440" cy="100" r="27.0" fill="url(#logoInk)"/>
+  <g transform="translate(256 256) scale(0.8462) translate(-281.75 -226.25)">
+    <path d="M104 372V220L170 306L236 220V372" fill="none" stroke="url(#logoInk)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M276 160H380M328 160V312" fill="none" stroke="url(#logoInk)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="440" cy="100" r="27.0" fill="url(#logoInk)"/>
+    <circle cx="440" cy="100" r="43.55" fill="none" stroke="#0A84FF" stroke-opacity="0.55" stroke-width="5.91"/>
   </g>
 </svg>
