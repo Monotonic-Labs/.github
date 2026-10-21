@@ -90,9 +90,6 @@ def banner(t: dict) -> str:
     <mask id="gridMask">
       <rect width="1280" height="320" fill="url(#gridFade)"/>
     </mask>
-    <clipPath id="markClip">
-      <rect x="96" y="112" width="96" height="96" rx="22"/>
-    </clipPath>
   </defs>
 
   <rect width="1280" height="320" fill="{t['bg']}"/>
@@ -106,14 +103,8 @@ def banner(t: dict) -> str:
   <circle cx="1140" cy="68" r="3.5" fill="#5E7BF0"/>
   <circle cx="1220" cy="68" r="6" fill="#0A84FF"/>
 
-  <!-- Mark -->
-  <g clip-path="url(#markClip)">
-    <g transform="translate(96 112) scale({96 / 512})">
-{logo("mark")}    </g>
-  </g>
-
   <!-- Wordmark -->
-  <text x="224" y="182" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="64" letter-spacing="-1.5" fill="{t['text']}">
+  <text x="96" y="182" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="64" letter-spacing="-1.5" fill="{t['text']}">
     <tspan font-weight="700">Monotonic</tspan><tspan font-weight="300" fill="{t['text_muted']}" dx="18">Labs</tspan>
   </text>
 </svg>
