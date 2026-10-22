@@ -21,6 +21,7 @@
 
   <rect width="1280" height="320" fill="#ffffff"/>
   <rect width="1280" height="320" fill="url(#grid)" mask="url(#gridMask)"/>
+  <g transform="translate(0 0) scale(1)">
 
   <!-- Monotonic (non-decreasing) step function -->
   <path d="M600 272H700V252H770V238H830V204H900V192H960V156H1020V126H1080V102H1140V68H1220"
@@ -34,4 +35,5 @@
   <text x="96" y="182" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="64" letter-spacing="-1.5" fill="#1f2328">
     <tspan font-weight="700">Monotonic</tspan><tspan font-weight="300" fill="#59636e" dx="18">Labs</tspan>
   </text>
+  </g>
 </svg>

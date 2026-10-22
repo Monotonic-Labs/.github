@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="500" viewBox="0 0 1500 500">
+  <defs>
+    <linearGradient id="accent" gradientUnits="userSpaceOnUse" x1="600" y1="0" x2="1220" y2="0">
+      <stop offset="0" stop-color="#FF9500" stop-opacity="0"/>
+      <stop offset="0.25" stop-color="#FF9500" stop-opacity="0.75"/>
+      <stop offset="0.5" stop-color="#FF2D55"/>
+      <stop offset="0.75" stop-color="#AF52DE"/>
+      <stop offset="1" stop-color="#0A84FF"/>
+    </linearGradient>
+    <pattern id="grid" width="46.875" height="46.875" patternUnits="userSpaceOnUse">
+      <path d="M46.875 0H0V46.875" fill="none" stroke="#1f2328" stroke-opacity="0.05" stroke-width="1.17188"/>
+    </pattern>
+    <linearGradient id="gridFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0.3" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="1"/>
+    </linearGradient>
+    <mask id="gridMask">
+      <rect width="1500" height="500" fill="url(#gridFade)"/>
+    </mask>
+  </defs>
+
+  <rect width="1500" height="500" fill="#ffffff"/>
+  <rect width="1500" height="500" fill="url(#grid)" mask="url(#gridMask)"/>
+  <g transform="translate(0 62.5) scale(1.17188)">
+
+  <!-- Monotonic (non-decreasing) step function -->
+  <path d="M600 272H700V252H770V238H830V204H900V192H960V156H1020V126H1080V102H1140V68H1220"
+        fill="none" stroke="url(#accent)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="900" cy="192" r="3.5" fill="#FF2D55"/>
+  <circle cx="1020" cy="126" r="3.5" fill="#AF52DE"/>
+  <circle cx="1140" cy="68" r="3.5" fill="#5E7BF0"/>
+  <circle cx="1220" cy="68" r="6" fill="#0A84FF"/>
+
+  <!-- Wordmark -->
+  <text x="96" y="182" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="64" letter-spacing="-1.5" fill="#1f2328">
+    <tspan font-weight="700">Monotonic</tspan><tspan font-weight="300" fill="#59636e" dx="18">Labs</tspan>
+  </text>
+  </g>
+</svg>

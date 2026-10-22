@@ -7,6 +7,7 @@ import resvg_py
 ROOT = Path(__file__).parent
 FONTS = ROOT / "fonts"
 OUT = ROOT.parent / "profile" / "assets"
+SOCIAL = ROOT / "social"
 
 # Brand gradient, bottom-left to top-right: orange, pink, purple, blue.
 GRADIENT = [(0.0, "#FF9500"), (0.35, "#FF2D55"), (0.68, "#AF52DE"), (1.0, "#0A84FF")]
@@ -75,9 +76,15 @@ def avatar() -> str:
     return f'<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">\n{logo("logo")}</svg>\n'
 
 
-def banner(t: dict) -> str:
+def banner(t: dict, width: int = 1280, height: int = 320) -> str:
+    """The 1280x320 banner design. A different canvas size scales the design to
+    the full width and centers it vertically, with the background and grid
+    filling the whole canvas."""
+    s = width / 1280
+    oy = (height - 320 * s) / 2
+    cell = 40 * s
     return f"""\
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320">
+<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
   <defs>
     <linearGradient id="accent" gradientUnits="userSpaceOnUse" x1="600" y1="0" x2="1220" y2="0">
       <stop offset="0" stop-color="#FF9500" stop-opacity="0"/>
@@ -86,20 +93,21 @@ def banner(t: dict) -> str:
       <stop offset="0.75" stop-color="#AF52DE"/>
       <stop offset="1" stop-color="#0A84FF"/>
     </linearGradient>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0H0V40" fill="none" stroke="{t['grid']}" stroke-opacity="{t['grid_opacity']}" stroke-width="1"/>
+    <pattern id="grid" width="{cell:g}" height="{cell:g}" patternUnits="userSpaceOnUse">
+      <path d="M{cell:g} 0H0V{cell:g}" fill="none" stroke="{t['grid']}" stroke-opacity="{t['grid_opacity']}" stroke-width="{s:g}"/>
     </pattern>
     <linearGradient id="gridFade" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0.3" stop-color="#fff" stop-opacity="0"/>
       <stop offset="1" stop-color="#fff" stop-opacity="1"/>
     </linearGradient>
     <mask id="gridMask">
-      <rect width="1280" height="320" fill="url(#gridFade)"/>
+      <rect width="{width}" height="{height}" fill="url(#gridFade)"/>
     </mask>
   </defs>
 
-  <rect width="1280" height="320" fill="{t['bg']}"/>
-  <rect width="1280" height="320" fill="url(#grid)" mask="url(#gridMask)"/>
+  <rect width="{width}" height="{height}" fill="{t['bg']}"/>
+  <rect width="{width}" height="{height}" fill="url(#grid)" mask="url(#gridMask)"/>
+  <g transform="translate(0 {oy:g}) scale({s:g})">
 
   <!-- Monotonic (non-decreasing) step function -->
   <path d="M600 272H700V252H770V238H830V204H900V192H960V156H1020V126H1080V102H1140V68H1220"
@@ -113,21 +121,25 @@ def banner(t: dict) -> str:
   <text x="96" y="182" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="64" letter-spacing="-1.5" fill="{t['text']}">
     <tspan font-weight="700">Monotonic</tspan><tspan font-weight="300" fill="{t['text_muted']}" dx="18">Labs</tspan>
   </text>
+  </g>
 </svg>
 """
 
 
-def render(svg: str, name: str, zoom: float) -> None:
-    (OUT / f"{name}.svg").write_text(svg)
+def render(svg: str, name: str, zoom: float, out: Path = OUT) -> None:
+    out.mkdir(parents=True, exist_ok=True)
+    (out / f"{name}.svg").write_text(svg)
     png = resvg_py.svg_to_bytes(svg_string=svg, font_dirs=[str(FONTS)], zoom=zoom)
-    (OUT / f"{name}.png").write_bytes(bytes(png))
+    (out / f"{name}.png").write_bytes(bytes(png))
     print(f"wrote {name}.svg / {name}.png")
 
 
 def main() -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
     for name, theme in THEMES.items():
         render(banner(theme), f"banner-{name}", zoom=2.0)
+        # X (Twitter) header: exactly 1500x500. The profile picture overlaps the
+        # bottom-left corner, which the banner layout already leaves clear.
+        render(banner(theme, 1500, 500), f"x-header-{name}", zoom=1.0, out=SOCIAL)
     render(avatar(), "avatar", zoom=2.0)
 
 
