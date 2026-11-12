@@ -11,7 +11,7 @@ Monotonic Labs is a privacy-focused machine learning lab building small, capable
 ## What we build
 
 - **Small models, well tuned** - compact systems shaped for laptops, phones, and modest on-premise hardware rather than sprawling data centers.
-- **Private hosting now, the edge next** - each customer's model runs isolated inside Monotonic today. The edge client will do that work on the customer's own machine, fast, dependable, and available even when the network is not.
+- **Private hosting** - each customer's model runs isolated inside Monotonic today.
 - **Practical AI for SMBs** - focused solutions for small and medium businesses that want the benefits of machine learning without the overhead of a cloud contract.
 
 ## What we believe
