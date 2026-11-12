@@ -6,7 +6,7 @@
 
 ## Ahoy, and welcome
 
-Monotonic Labs is a privacy-focused machine learning lab building small, capable AI systems for individuals and small businesses. Today we host each customer's private model in Monotonic's own isolated infrastructure, never a third party's. Next, an edge client brings that work onto the hardware they already own. We believe useful intelligence should not cost you control of your data, and we design every system around that conviction from the very first line.
+Monotonic Labs is a privacy-focused machine learning lab building small, capable AI systems for individuals and small businesses. Today we host each customer's private model in Monotonic's own isolated infrastructure, never a third party's. We believe useful intelligence should not cost you control of your data, and we design every system around that conviction from the very first line.
 
 ## What we build
 
